@@ -28,6 +28,8 @@ export default function LoginForm({}) {
         redirect: false,
       });
 
+      console.log("from sign in");
+
       if (res.error) {
         console.log("Error logging in");
         return;
@@ -40,10 +42,16 @@ export default function LoginForm({}) {
   };
 
   return (
-    <div>
-      <h1>USER LOGIN</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-pink-100">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center w-1/2 h-1/3 rounded-lg border-8 border-pink-400 border-solid p-4 space-y-6 shadow-md bg-gray-100"
+      >
+        <h1 className="text-center text-4xl font-extrabold mt-4 tracking-wide">
+          Los Reyess
+        </h1>
         <input
+          className="w-full rounded-xl border-2 border-gray-300 border-solid py-1 px-2"
           type="text"
           placeholder="Nombre de usuario"
           onChange={(event) =>
@@ -51,13 +59,16 @@ export default function LoginForm({}) {
           }
         ></input>
         <input
+          className="w-full rounded-xl border-2 border-gray-300 border-solid py-1 px-2"
           type="password"
           placeholder="Contraseña"
           onChange={(event) =>
             setUser({ ...user, password: event.target.value })
           }
         ></input>
-        <button>Iniciar Sesión</button>
+        <button className="rounded-xl w-fit-content bg-pink-400 text-white py-2 px-4 font-bold">
+          Iniciar Sesión
+        </button>
       </form>
     </div>
   );

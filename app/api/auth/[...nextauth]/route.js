@@ -11,6 +11,7 @@ export const authOptions = {
       credentials: {},
 
       async authorize(credentials) {
+        console.log("in authorize", credentials);
         const { username, password } = credentials;
         try {
           await connect();
@@ -23,23 +24,38 @@ export const authOptions = {
           }
           const passwordsMatch = await bcrypt.compare(password, user.password);
 
-          if (!passwordsMatch) return null;
-          return user;
+          if (passwordsMatch) {
+            console.log(user);
+            return user;
+          }
+          return null;
         } catch (error) {
           console.log("Error authorizing user", error);
         }
       },
     }),
   ],
+  callbacks: {
+    session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...token.user,
+          id: token.sub,
+        },
+      };
+    },
+    jwt({ token, user }) {
+      if (!!user) token.user = user;
+      return token;
+    },
+  },
   session: {
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/",
-  },
-  jwt: {
-    maxAge: 30,
   },
 };
 

@@ -1,8 +1,8 @@
 import connect from "@/lib/db";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import User from "../../../models/User";
 
-export async function POST(req) {
+export async function POST(req: NextRequest) {
   try {
     const { username } = await req.json();
     await connect();
@@ -19,6 +19,9 @@ export async function POST(req) {
       );
   } catch (error) {
     console.log("Error finding user", error);
-    return NextResponse({ message: "Error finding user" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Error finding user" },
+      { status: 500 }
+    );
   }
 }
