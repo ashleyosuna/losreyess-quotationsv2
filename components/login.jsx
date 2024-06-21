@@ -42,10 +42,10 @@ export default function LoginForm({}) {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-pink-100">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-pink-100 px-8 md:px-0">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center w-1/2 h-1/3 rounded-lg border-8 border-pink-400 border-solid p-4 space-y-6 shadow-md bg-gray-100"
+        className="w-full flex flex-col items-center md:w-1/2 rounded-lg border-8 border-pink-400 border-solid p-4 space-y-6 shadow-md bg-gray-100"
       >
         <h1 className="text-center text-4xl font-extrabold mt-4 tracking-wide">
           Los Reyess

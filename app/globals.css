@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.popup-content {
+  @media only screen and (max-width: 900px) {
+    padding: 15px;
+    width: fit-content;
+  }
+
+  width: 50%;
+}
